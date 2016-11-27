@@ -10,12 +10,13 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/jjafuller/ouroboros/command/dotnet"
 )
 
 var (
 	tplPath, tplName, dstPath, dstName string
-	ignore                             = regexp.MustCompile(`\.vs|bin/|obj/|packages/`)
-	editableFiles                      = regexp.MustCompile(`\.(cs|csproj|sln|config|md)$`)
+	ignore                             = regexp.MustCompile(`\.vs|\.git|\.DS_Store|Thumbs.db|bin/|obj/|packages/`)
 )
 
 // DotnetCommand creates a .NET solution from a .NET solution
@@ -89,7 +90,13 @@ func copy(src, dst string, fi os.FileInfo) (err error) {
 			os.Mkdir(dst, 0755)
 		}
 	} else {
-		if editableFiles.MatchString(fi.Name()) {
+		ext := strings.ToLower(filepath.Ext(fi.Name()))
+
+		// if this file is a type known to contain project names,
+		// edit it, otherwise just copy it
+		if _, ok := dotnet.VsData.SourceFileExts[ext]; ok {
+			err = copyFileAndEdit(src, dst)
+		} else if _, ok := dotnet.VsData.ProjectFileExts[ext]; ok {
 			err = copyFileAndEdit(src, dst)
 		} else {
 			err = copyFile(src, dst)
