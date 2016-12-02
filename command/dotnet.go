@@ -14,9 +14,17 @@ import (
 	"github.com/jjafuller/ouroboros/command/dotnet"
 )
 
+// ^Project.*{(.*)}"$
+// Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{8EA60CA5-7D3D-4813-ACB1-069618285452}"
+
+// ^\s*<ProjectGuid>{(.*)}</ProjectGuid>\s*$
+//     <ProjectGuid>{8EA60CA5-7D3D-4813-ACB1-069618285452}</ProjectGuid>
+
 var (
 	tplPath, tplName, dstPath, dstName string
 	ignore                             = regexp.MustCompile(`\.vs|\.git|\.DS_Store|Thumbs.db|bin/|obj/|packages/`)
+	guidInSln                          = regexp.MustCompile(`^Project.*{(?P<guid>.*)}"$`)
+	guidInProj                         = regexp.MustCompile(`^\s*<ProjectGuid>{(?P<guid>.*)}</ProjectGuid>\s*$`)
 )
 
 // DotnetCommand creates a .NET solution from a .NET solution
@@ -82,6 +90,30 @@ func visit(filePath string, fi os.FileInfo, err error) error {
 
 	fmt.Printf("Visited: %s\n", rel)
 	return nil
+}
+
+// ExtractGUID extracts guids from file contents
+func (c *DotnetCommand) ExtractGUID(contents, ext string) (err error) {
+	lines := strings.Split(contents, "\n")
+
+	guids := []string{}
+
+	re := guidInSln
+	if ext != ".sln" {
+		re = guidInProj
+	}
+
+	for _, line := range lines {
+		matches := re.FindStringSubmatch(line)
+
+		if len(matches) > 1 {
+			guids = append(guids, matches[1])
+		}
+	}
+
+	fmt.Printf("%v\n", guids)
+
+	return
 }
 
 func copy(src, dst string, fi os.FileInfo) (err error) {
