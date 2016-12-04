@@ -6,6 +6,23 @@ Ouroboros is a command line utility that can be used to recreate template soluti
 
 ## Usage
 
+```
+usage: ouroboros [--version] [--help] <command> [<args>]
+
+Available commands are:
+    dotnet     Create a new .NET solution from a .NET solution
+    version    Print ouroboros version and quit
+```
+
+### dotnet
+
+```
+usage: ouroboros dotnet <args> [tpl path] [dst path]
+  
+Available args are:  
+    new-guids     Generate new project GUIDs
+```
+
 ## Install
 
 To install, use `go get`:

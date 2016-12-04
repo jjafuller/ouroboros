@@ -295,8 +295,11 @@ func (c *DotnetCommand) Synopsis() string {
 // Help provides detailed usage information for this command
 func (c *DotnetCommand) Help() string {
 	helpText := `
-USAGE: ouroboros dotnet <args> [tpl path] [dst path]
-  new-guids      Generate new project GUIDs
+usage: ouroboros dotnet <args> [tpl path] [dst path]
+  
+Available args are:  
+    new-guids     Generate new project GUIDs
+
 `
 	return strings.TrimSpace(helpText)
 }
