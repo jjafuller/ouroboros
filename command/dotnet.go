@@ -57,8 +57,8 @@ func (c *DotnetCommand) Run(args []string) int {
 	tplPath = cmdFlags.Arg(0)
 	dstPath = cmdFlags.Arg(1)
 
-	tplName = path.Base(tplPath)
-	dstName = path.Base(dstPath)
+	tplName = filepath.Base(tplPath)
+	dstName = filepath.Base(dstPath)
 
 	fmt.Printf("Template: \n  %s\n", tplName)
 	fmt.Printf("Destination: \n  %s\n", dstName)
