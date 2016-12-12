@@ -26,7 +26,8 @@ import (
 
 var (
 	tplPath, tplName, dstPath, dstName string
-	ignore                             = regexp.MustCompile(`\.vs|\.git|\.DS_Store|Thumbs.db|bin/|obj/|packages/`)
+	ignoreFiles                        = regexp.MustCompile(`\.DS_Store|Thumbs.db`)
+	ignoreDirectories                  = regexp.MustCompile(`\.vs|\.git|bin|obj|packages`)
 	guidInSln                          = regexp.MustCompile(`^Project.*{(?P<guid>.*)}"$`)
 )
 
@@ -131,8 +132,17 @@ func getDirectoryList(dirPath string) (map[string]os.FileInfo, string, error) {
 		// get the file path relative to the dir path
 		rel := strings.Replace(filePath, dirPath, "", 1)
 
-		// if we are at the root, or are looking at an ignored file skip it
-		if len(rel) == 0 || ignore.MatchString(rel) {
+		// TODO: improve this section, this is a sloppy hack to ignore some binary directories
+		// this could cause all kinds of issues if directory names are partial matches i.e.,
+		// since 'packages' is ignored a directory called 'asset_packages' would be ignored.
+		if len(rel) == 0 {
+			// if we are at the root, or are looking at an ignored file skip it
+			return nil
+		} else if !fi.IsDir() && (ignoreFiles.MatchString(rel) || ignoreDirectories.MatchString(rel)) {
+			// if this is a file, and it matches a file pattern, or contains an ignored directory skip it
+			return nil
+		} else if fi.IsDir() && ignoreDirectories.MatchString(rel) {
+			// if this contains an ignored directory skip it
 			return nil
 		}
 
