@@ -21,6 +21,7 @@ usage: ouroboros dotnet <args> [tpl path] [dst path]
   
 Available args are:  
     new-guids     Generate new project GUIDs
+    tpl-name      Override template solution name
 ```
 
 ## Install
