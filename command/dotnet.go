@@ -26,8 +26,6 @@ import (
 
 var (
 	tplPath, tplName, dstPath, dstName string
-	ignoreFiles                        = regexp.MustCompile(`\.DS_Store|Thumbs.db`)
-	ignoreDirectories                  = regexp.MustCompile(`\.vs|\.git|bin|obj|packages`)
 	guidInSln                          = regexp.MustCompile(`^Project.*{(?P<guid>.*)}"$`)
 )
 
@@ -123,6 +121,8 @@ func getDirectoryList(dirPath string) (map[string]os.FileInfo, string, error) {
 	dirList := make(map[string]os.FileInfo)
 	slnPath := ""
 
+	ignoredDirs := []string{}
+
 	err := filepath.Walk(dirPath, func(filePath string, fi os.FileInfo, walkErr error) error {
 		// if an error occurred while walking the directory bubble up
 		if walkErr != nil {
@@ -132,21 +132,29 @@ func getDirectoryList(dirPath string) (map[string]os.FileInfo, string, error) {
 		// get the file path relative to the dir path
 		rel := strings.Replace(filePath, dirPath, "", 1)
 
-		// TODO: improve this section, this is a sloppy hack to ignore some binary directories
-		// this could cause all kinds of issues if directory names are partial matches i.e.,
-		// since 'packages' is ignored a directory called 'asset_packages' would be ignored.
+		name := fi.Name()
+
 		if len(rel) == 0 {
 			// if we are at the root, or are looking at an ignored file skip it
 			return nil
-		} else if !fi.IsDir() && (ignoreFiles.MatchString(rel) || ignoreDirectories.MatchString(rel)) {
-			// if this is a file, and it matches a file pattern, or contains an ignored directory skip it
-			return nil
-		} else if fi.IsDir() && ignoreDirectories.MatchString(rel) {
-			// if this contains an ignored directory skip it
+		} else if _, ok := dotnet.VsData.IgnoredItems[name]; ok {
+			// we need to keep track of the directories we ignored so
+			// that we do not try to copies files within the directory
+			if fi.IsDir() {
+				ignoredDirs = append(ignoredDirs, rel)
+			}
+
 			return nil
 		}
 
-		ext := strings.ToLower(filepath.Ext(fi.Name()))
+		// check to see if this path begins with any of our ignore directories
+		for _, ignoredDir := range ignoredDirs {
+			if strings.HasPrefix(rel, ignoredDir) {
+				return nil
+			}
+		}
+
+		ext := strings.ToLower(filepath.Ext(name))
 
 		if ext == ".sln" {
 			slnPath = filePath

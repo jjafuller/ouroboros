@@ -5,7 +5,7 @@ package dotnet
 // SourceFileExts is a map of known source type file extensions
 // ProjectFileExts is a map of known project type file extensions
 var VsData = struct {
-	ProjectTypeGUID, SourceFileExts, ProjectFileExts map[string]string
+	ProjectTypeGUID, SourceFileExts, ProjectFileExts, IgnoredItems map[string]string
 }{
 	ProjectTypeGUID: map[string]string{
 		"{06A35CCD-C46D-44D5-987B-CF40FF872267}": "Deployment Merge Module",
@@ -95,4 +95,13 @@ var VsData = struct {
 		".vdproj":          "Visual Studio deployment project",
 		".vmx":             "Macro project",
 		".vup":             "Utility project",
+	},
+	IgnoredItems: map[string]string{
+		".DS_Store": "macOS metadata",
+		"Thumbs.db": "Windows thumbnail cache",
+		".vs":       "Visual Studio user dir",
+		".git":      "git repo",
+		"bin":       "binary output",
+		"obj":       "object output",
+		"packages":  "nuget packages",
 	}}
