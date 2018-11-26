@@ -21,13 +21,13 @@ usage: ouroboros dotnet <args> [tpl path] [dst path]
   
 Available args are:  
     new-guids     Generate new project GUIDs
-    tpl-name      Override template solution name
+    tpl-sln-name      Override template solution name
 ```
 
 #### dotnet Windows Example
 
 ```
-PS F:\projects> ouroboros.exe dotnet -tpl-name="NameOfTemplateSolutionFile" "F:\projects\template-repo\src" "F:\projects\destination-repo\NameOfNewSolution"
+PS F:\projects> ouroboros.exe dotnet -tpl-sln-name="NameOfTemplateSolutionFile" "F:\projects\template-repo\src" "F:\projects\destination-repo\NameOfNewSolution"
 ```
 
 ## Install

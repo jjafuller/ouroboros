@@ -43,7 +43,7 @@ func (c *DotnetCommand) Run(args []string) int {
 
 	newGUIDs := cmdFlags.Bool("new-guids", false, "generate new guids?")
 
-	overrideTplName := cmdFlags.String("tpl-name", "", "override template solution name")
+	overrideTplName := cmdFlags.String("tpl-sln-name", "", "override template solution name (exclude extension)")
 
 	if err := cmdFlags.Parse(args); err != nil {
 		c.Ui.Error(fmt.Sprintf("Invalid arguments: %s\n", err))
@@ -324,7 +324,7 @@ usage: ouroboros dotnet <args> [tpl path] [dst path]
   
 Available args are:  
     new-guids     Generate new project GUIDs
-	tpl-name      Override template solution name
+	tpl-sln-name      Override template solution name
 `
 	return strings.TrimSpace(helpText)
 }
