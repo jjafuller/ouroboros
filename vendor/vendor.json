@@ -1,0 +1,91 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "/Q6YV6eYVMue9P26faFismXwEjM=",
+			"path": "github.com/armon/go-radix",
+			"revision": "1a2de0c21c94309923825da3df33a4381872c795",
+			"revisionTime": "2018-08-24T02:57:28Z"
+		},
+		{
+			"checksumSHA1": "ZNwBbAZNiuzvDBjOrm1tFP3fiFQ=",
+			"path": "github.com/bgentry/speakeasy",
+			"revision": "4aabc24848ce5fd31929f7d1e4ea74d3709c14cd",
+			"revisionTime": "2017-04-17T20:07:03Z"
+		},
+		{
+			"checksumSHA1": "/Mf+e6NMbRCrJ/e1AeoinE+p07M=",
+			"path": "github.com/fatih/color",
+			"revision": "3f9d52f7176a6927daacff70a3e8d1dc2025c53e",
+			"revisionTime": "2018-10-10T23:13:11Z"
+		},
+		{
+			"checksumSHA1": "z1Eg/1dJj3MeY9PkMYjdfboYXxg=",
+			"path": "github.com/hashicorp/errwrap",
+			"revision": "8a6fb523712970c966eefc6b39ed2c5e74880354",
+			"revisionTime": "2018-08-24T00:39:10Z"
+		},
+		{
+			"checksumSHA1": "hz4ZLFtmKMPCoS8zFuo/6ViWI1Q=",
+			"path": "github.com/hashicorp/go-multierror",
+			"revision": "886a7fbe3eb1c874d46f623bfa70af45f425b3d1",
+			"revisionTime": "2018-08-24T00:40:42Z"
+		},
+		{
+			"checksumSHA1": "AtXpiR7Gtq5cF+6eUAH+LzupMts=",
+			"path": "github.com/mattn/go-colorable",
+			"revision": "efa589957cd060542a26d2dd7832fd6a6c6c3ade",
+			"revisionTime": "2018-03-10T13:32:14Z"
+		},
+		{
+			"checksumSHA1": "LkbotKu3JQxXEZZ9P40yhnFOycY=",
+			"path": "github.com/mattn/go-isatty",
+			"revision": "3fb116b820352b7f0c281308a4d6250c22d94e27",
+			"revisionTime": "2018-08-30T10:17:45Z"
+		},
+		{
+			"checksumSHA1": "sZOqCv/PYQG65dK8otOsddySf7E=",
+			"path": "github.com/mitchellh/cli",
+			"revision": "3d22a244be8aa6fb16ac24af0e195c08b7d973aa",
+			"revisionTime": "2018-08-24T00:41:14Z"
+		},
+		{
+			"checksumSHA1": "IFo/JPSHga1jEWbBYrR0vT3Fl54=",
+			"path": "github.com/posener/complete",
+			"revision": "3ef9b31a6a0613ae832e7ecf208374027c3b2343",
+			"revisionTime": "2018-10-26T10:48:32Z"
+		},
+		{
+			"checksumSHA1": "9EhQR68wWzoXWwFe+QgKqVDv+ps=",
+			"path": "github.com/posener/complete/cmd",
+			"revision": "3ef9b31a6a0613ae832e7ecf208374027c3b2343",
+			"revisionTime": "2018-10-26T10:48:32Z"
+		},
+		{
+			"checksumSHA1": "GGqG6vCkgnnaKzsMp4NZyKlJ8zM=",
+			"path": "github.com/posener/complete/cmd/install",
+			"revision": "3ef9b31a6a0613ae832e7ecf208374027c3b2343",
+			"revisionTime": "2018-10-26T10:48:32Z"
+		},
+		{
+			"checksumSHA1": "ChqMwcDEPbIClzuXIEGJ+hesi1o=",
+			"path": "github.com/posener/complete/match",
+			"revision": "3ef9b31a6a0613ae832e7ecf208374027c3b2343",
+			"revisionTime": "2018-10-26T10:48:32Z"
+		},
+		{
+			"checksumSHA1": "3JBPxvZn52LORHX9F382xpkt1sA=",
+			"path": "github.com/satori/go.uuid",
+			"revision": "b2ce2384e17bbe0c6d34077efa39dbab3e09123b",
+			"revisionTime": "2018-10-28T12:50:25Z"
+		},
+		{
+			"checksumSHA1": "QmmEQv1jLvjlVGPsWewqeNYNoyk=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "62eef0e2fa9b2c385f7b2778e763486da6880d37",
+			"revisionTime": "2018-11-22T14:36:24Z"
+		}
+	],
+	"rootPath": "github.com/jjafuller/ouroboros"
+}

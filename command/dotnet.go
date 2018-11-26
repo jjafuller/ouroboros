@@ -202,7 +202,7 @@ func (c *DotnetCommand) GeneratenewGUIDs(guids []string) (guidMap map[string]str
 	guidMap = make(map[string]string)
 
 	for _, guid := range guids {
-		guidMap[guid] = strings.ToUpper(uuid.NewV4().String())
+		guidMap[guid] = strings.ToUpper(uuid.Must(uuid.NewV4()).String())
 	}
 
 	return

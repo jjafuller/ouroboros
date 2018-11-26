@@ -32,6 +32,12 @@ To install, use `go get`:
 $ go get -d github.com/jjafuller/ouroboros
 ```
 
+To install dependencies:
+
+```bash
+$ govendor sync
+```
+
 ## Contribution
 
 1. Fork ([https://github.com/jjafuller/ouroboros/fork](https://github.com/jjafuller/ouroboros/fork))

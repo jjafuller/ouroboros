@@ -2,3 +2,6 @@
 .DS_Store
 ouroboros
 ouroboros.exe
+
+vendor/*
+!vendor/vendor.json
