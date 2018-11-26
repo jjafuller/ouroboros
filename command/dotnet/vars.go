@@ -75,6 +75,7 @@ var VsData = struct {
 		".jsl":    "J# source",
 		".vb":     "VB source",
 		".config": "Config file",
+		".json":   "Config file",
 	},
 	ProjectFileExts: map[string]string{
 		".atp":             "Application template project",
