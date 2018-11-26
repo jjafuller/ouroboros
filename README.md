@@ -24,6 +24,12 @@ Available args are:
     tpl-name      Override template solution name
 ```
 
+#### dotnet Windows Example
+
+```
+PS F:\projects> ouroboros.exe dotnet -tpl-name="NameOfTemplateSolutionFile" "F:\projects\template-repo\src" "F:\projects\destination-repo\NameOfNewSolution"
+```
+
 ## Install
 
 To install, use `go get`:
